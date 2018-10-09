@@ -39,10 +39,10 @@ module.exports = function(app, passport){
 	}));
 
 	app.get('/admin/vote', isAuthenticated, function(req, res){
-		res.render('template/admin/vote', {});
+		res.render('template/vote', {});
 	});
 	app.get('/admin/user', isAuthenticated, function(req, res){
-		res.render('template/admin/vote', {});
+		res.render('template/user', {});
 	});
 
 	app.get('/readme',isAuthenticated, function(req, res) {
