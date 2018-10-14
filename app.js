@@ -12,8 +12,8 @@ var passport = require('passport');
 var expressSession = require('express-session');
 var flash = require('connect-flash');
 
+출처: http://goodjoon.tistory.com/260 [Good Joon]
 //truffle
-app.use(express.static(path.join(__dirname, 'truffle/build/contracts')));
 app.use(express.static(path.join(__dirname, 'truffle/build/contracts')));
 
 // view engine setup

@@ -30,6 +30,24 @@ function selectAddr(addr){
     $("#address").val(addr);
 }
 
+function getAccount(error, accounts) {
+    if (error) {
+      console.log(error);
+    }
+    console.log(accounts);
+    var tb = $('#addressList');
+    tb.html("");
+    var i = 0;   
+    $.each(accounts, function(key, value){
+        var html ="<tr onclick='selectAddr(\"" + value + "\")'><td>" + ++i + "</td><td>"+value+"</td></tr>";
+        tb.append(html);
+    });
+}
+
 $(document).ready(function(){
     getList();
+    
+    web3App.init();
+    web3App.Web3GetAccounts(getAccount);
+
 });

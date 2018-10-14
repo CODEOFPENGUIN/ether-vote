@@ -85,4 +85,5 @@ $(document).ready(function(){
   $(document).on('click', '#btn-addCandidate', Web3AddCandidate);
   $(document).on('click', '#btn-getCandidate', Web3GetCandidateList);
   $(document).on('change','#voteList',setVoteSeq);
+
 });

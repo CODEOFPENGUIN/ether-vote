@@ -3,12 +3,8 @@ var Bbs = require('../persister/bbs');
 module.exports = function(app, passport){
 	
 	 /* GET home page. */
-	// app.get('/',isAuthenticated, function(req, res) {
-	//    res.redirect('/readme');
-	// });
-
-	app.get('/', function(req, res){
-		res.redirect('/blank');
+	app.get('/',isAuthenticated, function(req, res) {
+	   res.redirect('/readme');
 	});
 
 	app.post('/login', passport.authenticate('login', {
@@ -154,9 +150,9 @@ module.exports = function(app, passport){
 	// As with any middleware it is quintessential to call next()
 	// if the user is authenticated
 	var isAuthenticated = function (req, res, next) {
-	  //if (req.isAuthenticated())
+	  if (req.isAuthenticated())
 	    return next();
-	  //res.redirect('/login');
+	  res.redirect('/login');
 	}
 
 
