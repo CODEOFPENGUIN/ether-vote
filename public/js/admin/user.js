@@ -44,10 +44,15 @@ function getAccount(error, accounts) {
     });
 }
 
+function reset(){
+    $('input').val("");
+}
+
 $(document).ready(function(){
     getList();
     
     web3App.init();
     web3App.Web3GetAccounts(getAccount);
 
+    $('.btn-circle').on('click', reset);
 });
