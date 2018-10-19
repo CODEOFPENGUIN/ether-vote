@@ -15,9 +15,10 @@ function getList(){
 
 function selectUser(username, addr){
     $("#username").val("");
+    $("#pwd").val("");
     $("#address").val("");
     $("#username").val(stringToEmpty(username));
-    $("#address").val(addr);
+    $("#address").text(addr);
 }
 
 function selectAddr(addr){
@@ -27,7 +28,7 @@ function selectAddr(addr){
         return false;
     }
     $("#address").val("");
-    $("#address").val(addr);
+    $("#address").text(addr);
 }
 
 function getAccount(error, accounts) {
@@ -48,6 +49,40 @@ function reset(){
     $('input').val("");
 }
 
+function updateUser(){
+    var uName = $('#username').val();
+    var pwd = $('#pwd').val();
+    var addr = $('#address').text();
+    $.post("/admin/user/update"
+                  ,{username:uName,password:pwd,address:addr}
+                  ,function(result){
+                    getList();
+              })
+    
+}
+
+function addUser(){
+    var uName = $('#username').val();
+    var pwd = $('#pwd').val();
+    var addr = $('#address').text();
+    $.post("/signup"
+                  ,{username:uName,password:pwd,address:addr}
+                  ,function(result){
+                    getList();
+              })
+}
+
+function deleteUser(){
+
+}
+
+function initUser(){
+    $.post("/admin/user/init"
+            ,{}
+            ,function(result){
+                getList();
+        })
+}
 $(document).ready(function(){
     getList();
     
@@ -55,4 +90,9 @@ $(document).ready(function(){
     web3App.Web3GetAccounts(getAccount);
 
     $('.btn-circle').on('click', reset);
+    $('#btn-add').on('click', addUser);
+    $('#btn-update').on('click', updateUser);
+    $('#btn-delete').on('click', deleteUser);
+
+    $('#btn-init').on('click', initUser);
 });

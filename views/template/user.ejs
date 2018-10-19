@@ -126,17 +126,18 @@
                                 </div>
                                 <div class="form-group">
                                     <label>사용자 Password</label>
-                                    <input id="address" class="form-control" placeholder="Enter text">
+                                    <input id="pwd" class="form-control" placeholder="Enter text">
                                 </div>
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <p class="form-control-static">email@example.com</p>
+                                    <p class="form-control-static" id="address">email@example.com</p>
                                 </div>
                                 
                                 <div class="pull-right">
                                     <div class="form-group">
-                                            <button type="button" class="btn btn-danger">등록</button>
-                                            <button type="button" class="btn btn-success">변경</button>
+                                            <button type="button" id="btn-add" class="btn btn-primary">등록</button>
+                                            <button type="button" id="btn-update" class="btn btn-success">변경</button>
+                                            <button type="button" id="btn-delete" class="btn btn-danger">삭제</button>
                                     </div>
                                 </div>
                             </div>
@@ -147,6 +148,7 @@
                     <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->
+                    <button type="button" id="btn-init" class="btn btn-danger">초기화</button>
         </div>
         <!-- /.col-lg-6 -->
     </div>
