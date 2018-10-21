@@ -34,8 +34,8 @@ module.exports = function(app, passport){
 		failureFlash : true 
 	}));
 
-	app.get('/admin/vote', isAuthenticated, function(req, res){
-		res.render('template/vote', {});
+	app.get('/admin/voteManager', isAuthenticated, function(req, res){
+		res.render('template/voteManager', {});
 	});
 	app.get('/admin/user', isAuthenticated, function(req, res){
 		res.render('template/user', {});
