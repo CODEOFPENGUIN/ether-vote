@@ -35,7 +35,7 @@ module.exports = function(app, passport){
 	}));
 
 	app.get('/admin/voteManager', isAuthenticated, function(req, res){
-		res.render('template/voteManager', {});
+		res.render('template/voteManager', {'token':req.user?req.user.address:""});
 	});
 	app.get('/admin/user', isAuthenticated, function(req, res){
 		res.render('template/user', {});
