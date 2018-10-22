@@ -35,10 +35,14 @@ module.exports = function(app, passport){
 	}));
 
 	app.get('/admin/voteManager', isAuthenticated, function(req, res){
-		res.render('template/voteManager', {'token':req.user?req.user.address:""});
+		res.render('template/voteManager', {token:req.user?req.user.address:""});
 	});
 	app.get('/admin/user', isAuthenticated, function(req, res){
 		res.render('template/user', {});
+	});
+
+	app.get('/vote', isAuthenticated, function(req, res){
+		res.render('template/vote', {'token':req.user?req.user.address:"", username:req.user.username});
 	});
 
 	app.get('/readme',isAuthenticated, function(req, res) {

@@ -32,6 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'web3_js')));
+app.use(express.static(path.join(__dirname, 'resource')));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

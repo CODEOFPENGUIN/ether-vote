@@ -53,8 +53,9 @@ contract VoteContract is Ownable {
         return voteHst[vSeq].voteCnt;
     }
 
-    function isVoted(uint256 vSeq, address vt) public view returns (bool){
-        return voteHst[vSeq].voters[vt].voted;
+    function isVoted(uint256 vSeq, address vt) public view returns (uint256 _vSeq, bool _isVoted){
+        _vSeq = vSeq;
+        _isVoted = voteHst[vSeq].voters[vt].voted;
     }
 
     function getVoteName(uint256 vSeq) public view returns (uint256 key, string value){
@@ -100,6 +101,20 @@ contract VoteContract is Ownable {
     function getCandidateList(uint256 vSeq, uint256 cSeq) public view returns (string _name, string _imgPath) {
         _name = voteHst[vSeq].candidates[cSeq].name;
         _imgPath = voteHst[vSeq].candidates[cSeq].imgPath;
+    }
+    
+    function getCandidateWithVotedList(uint256 vSeq, uint256 cSeq, address vt) public view returns (uint256 _cSeq, string _name, string _imgPath, bool _isVoted) {
+        _cSeq = cSeq;
+        _name = voteHst[vSeq].candidates[cSeq].name;
+        _imgPath = voteHst[vSeq].candidates[cSeq].imgPath;
+        _isVoted = false;
+        uint _vCnt = voteHst[vSeq].candidates[cSeq].voters.length;
+        for(uint i = 0; i < _vCnt; i++){
+            if(voteHst[vSeq].candidates[cSeq].voters[i] == vt){
+                _isVoted = true;
+                break;
+            }
+        }
     }
     
     function getCandidateCnt(uint256 vSeq) public view returns (uint) {

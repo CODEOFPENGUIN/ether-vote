@@ -62,6 +62,50 @@ function Web3GetCandidateList(vSeq, callback){
   });
 }
 
+function Web3GetCandidateWithVotedList(vSeq, addr, callback){
+  var voteInstance;
+  web3App.contracts.voteContract.deployed().then(function(instance) {
+    voteInstance = instance;
+    return voteInstance.getCandidateCnt.call(vSeq);
+  }).then(function(cSeq){
+    for(var i =0; i < cSeq; i++){
+      voteInstance.getCandidateWithVotedList.call(vSeq, i, addr).then(function(value){
+        callback(value);
+          
+      });
+    }
+  }).catch(function(err) {
+    console.log(err.message);
+  });
+}
+
+function Web3IsVoted(vSeq, addr, callback){
+  var voteInstance;
+  web3App.contracts.voteContract.deployed().then(function(instance) {
+    voteInstance = instance;
+    return voteInstance.isVoted(vSeq, addr, {from:web3App.currAccount});
+  }).then(function(value){
+    callback(value);
+  }).catch(function(err) {
+    console.log(err.message);
+  });
+
+}
+
+function Web3Vote(vSeq, cSeq, name, callback){
+  var voteInstance;
+  web3App.contracts.voteContract.deployed().then(function(instance) {
+    voteInstance = instance;
+    return voteInstance.voting(vSeq,cSeq,name, {from:web3App.currAccount, gas:3000000});
+  }).then(function(){
+    callback("S", "Vote success");
+  }).catch(function(err) {
+    console.log(err.message);
+    callback("E", err.message);
+  });
+
+}
+
 function setVoteSeq(){
   $('#vote-seq').text($('#voteList').val());
 }

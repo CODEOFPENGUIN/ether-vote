@@ -27,7 +27,6 @@ function searchCallback(val){
 function votelistSelectRow(key, val){
     $('#voteseq').val(key);
     $('#votename').text(val);
-    $("#candidate-tbody").empty();
     searchCandidate(key);
 }
 
@@ -41,6 +40,7 @@ function searchBtncandidate(){
 }
 
 function searchCandidate(seq){
+    $("#candidate-tbody").empty();
     Web3GetCandidateList(seq, searchCandidateCallback);
 }
 

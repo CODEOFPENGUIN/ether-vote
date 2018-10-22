@@ -1,0 +1,71 @@
+<%layout('../layout')%>
+<!-- Page Content -->
+<input type="hidden" id="token" value=<%=token%> />
+<input type="hidden" id="username" value=<%=username%> />
+<script src="/js/admin/vote.js"></script>
+<script src="/js/vote/voteview.js"></script>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">투표</h1>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="panel panel-primary">    
+                    <div class="panel-heading">
+                        <span id="name">투표목록</span>
+                        <div class="pull-right">
+                            <button type="button" id="btn-votesearch" class="btn btn-default btn-xs  btn-success">조회</button>
+                        </div>
+                    </div>
+                    <!-- /.panel-haeding -->
+                    <div class="panel-body">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <select class="form-control" id="votelist">
+
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel-primary -->
+            </div>
+            <!-- /.col-lg-2 -->
+        </div>
+        <!-- /.row -->
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <span id="name">후보자 목록</span>
+            </div>
+            <div class="row" id="vote-row">
+
+            </div>
+        </div>
+        <div class="row" id="templete" style="display: none;">            
+            <div class="col-lg-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span id="name">투표자명</span>
+                    </div>
+                    <div class="panel-body">
+                        <img id="candidate-img" src="img/penguin.jpg" height="242" width="242"/>
+                    </div>
+                    <div class="panel-footer">                        
+                        <button type="button" id="btn-vote" class="btn btn-default btn-circle center-block" ><i class="fa fa-check"></i>                        
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+
+<!-- /#page-wrapper -->
