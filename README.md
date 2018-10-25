@@ -25,15 +25,15 @@ Install Tortoisegit Client. (https://tortoisegit.org/)
 
 #### 3. Clone Ethereum Vote Project
 
-      Unix
+    Unix
 	$ git clone https://github.com/CODEOFPENGUIN/ether-vote.git
 	
-      Windos
+    Windos
         폴더 우클릭 Git Clone
-	![tortoisegit](https://user-images.githubusercontent.com/16829499/47509301-ceca2c80-d8b0-11e8-8a58-4d7e9463ca7c.png)
+![tortoisegit](https://user-images.githubusercontent.com/16829499/47509301-ceca2c80-d8b0-11e8-8a58-4d7e9463ca7c.png)
 	
 	Git Clone
-	![tortoisegit2](https://user-images.githubusercontent.com/16829499/47509304-d093f000-d8b0-11e8-83fb-4daf5f80a329.png)
+![tortoisegit2](https://user-images.githubusercontent.com/16829499/47509304-d093f000-d8b0-11e8-83fb-4daf5f80a329.png)
 	
 	$ cd ether-vote
 	$ mkdir -p data
@@ -44,13 +44,13 @@ Install Tortoisegit Client. (https://tortoisegit.org/)
 
 Install and start mongoDB. (http://www.mongodb.org) 
 
-  Unix
+    Unix
 	$ cd mongodb
 	$ bin/mongod --dbpath ether-vote/data &
 
-  Windows
+    Windows
 	경로 ether-vote 안에 data/log 폴더 선택 (EX: c:\ether-vote\data)
-    ![mongo1](https://user-images.githubusercontent.com/16829499/47505707-9ecb5b00-d8a9-11e8-8ea8-d8005bf8ec10.PNG)
+   ![mongo1](https://user-images.githubusercontent.com/16829499/47505707-9ecb5b00-d8a9-11e8-8ea8-d8005bf8ec10.PNG)
         
 	설치 uncheck
    ![mongo2](https://user-images.githubusercontent.com/16829499/47506222-9b849f00-d8aa-11e8-838c-250452804917.PNG)	
