@@ -32,7 +32,7 @@ Install and start mongoDB. (http://www.mongodb.org)
     ![mongo1](https://user-images.githubusercontent.com/16829499/47505707-9ecb5b00-d8a9-11e8-8ea8-d8005bf8ec10.PNG)
         
 	설치 uncheck
-	![mongo2](https://user-images.githubusercontent.com/16829499/47506222-9b849f00-d8aa-11e8-838c-250452804917.PNG)	
+   ![mongo2](https://user-images.githubusercontent.com/16829499/47506222-9b849f00-d8aa-11e8-838c-250452804917.PNG)	
 	
 	설치 완료 후에는 Service 자동 시작
 
