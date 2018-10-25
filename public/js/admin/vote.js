@@ -106,6 +106,18 @@ function Web3Vote(vSeq, cSeq, name, callback){
 
 }
 
+function Web3GetVotesCount(callback){
+  var voteInstance;
+  web3App.contracts.voteContract.deployed().then(function(instance) {
+    voteInstance = instance;
+    return voteInstance.getVotesCount();
+  }).then(function(value){
+    callback(value);
+  }).catch(function(err) {
+    console.log(err.message);
+  });
+
+}
 function setVoteSeq(){
   $('#vote-seq').text($('#voteList').val());
 }

@@ -1,14 +1,14 @@
 var Bbs = require('../persister/bbs');
 
 module.exports = function(app, passport){
-	
+
 	 /* GET home page. */
 	app.get('/',isAuthenticated, function(req, res) {
-	   res.redirect('/readme');
+	   res.redirect('/report');
 	});
 
 	app.post('/login', passport.authenticate('login', {
-		successRedirect: '/readme',
+		successRedirect: '/report',
 		failureRedirect: '/login',
 		failureFlash : true 
 	}));
@@ -43,6 +43,10 @@ module.exports = function(app, passport){
 
 	app.get('/vote', isAuthenticated, function(req, res){
 		res.render('template/vote', {'token':req.user?req.user.address:"", username:req.user.username});
+	});
+
+	app.get('/report', isAuthenticated, function(req, res){
+		res.render('template/report', {token:req.user?req.user.address:""});
 	});
 
 	app.get('/readme',isAuthenticated, function(req, res) {

@@ -1,0 +1,84 @@
+<%layout('../layout')%>
+<script src="/js/admin/vote.js"></script>
+<script src="/js/google-chart.js"></script>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">통계정보</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+        <div class="pull-right">
+            <button type="button" id="btn-votesearch" class="btn btn-default btn-xs  btn-success">조회</button>
+        </div>
+    </div>
+    <!-- /.row -->
+    <div class="row" id="chart-body">
+
+    </div>
+    <!-- /.row -->
+    <div class="row" id="templete-pie" ><!--style="display: none">-->
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span id="title"></span>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="flot-pie-chart"></div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span id="title"></span>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="flot-pie-chart2"></div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+    <div class="row" id="templete-pie" ><!--style="display: none">-->
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span id="title"></span>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="flot-pie-chart3"></div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span id="title"></span>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="flot-pie-chart4"></div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
+<script src="/bower_components/Flot/excanvas.min.js"></script>
+    <script src="/bower_components/Flot/jquery.flot.js"></script>
+    <script src="/bower_components/Flot/jquery.flot.pie.js"></script>
+    <script src="/bower_components/Flot/jquery.flot.resize.js"></script>
+    <script src="/bower_components/Flot/jquery.flot.time.js"></script>
+    <script src="/bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+<script src="/js/report/report.js"></script>

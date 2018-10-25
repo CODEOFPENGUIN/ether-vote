@@ -1,8 +1,9 @@
 pragma solidity ^0.4.24;
 import "./Ownable.sol";
+import "./stringUtil.sol";
 //import "github.com/Arachnid/solidity-stringutils/strings.sol";
 
-contract VoteContract is Ownable {
+contract VoteContract is Ownable, StringUtil {
     //using strings for *;
     
     struct voter {
@@ -120,4 +121,32 @@ contract VoteContract is Ownable {
     function getCandidateCnt(uint256 vSeq) public view returns (uint) {
         return voteHst[vSeq].candidateSeq;
     }
+
+    
+    function getVotesCount() public pure returns (string list){
+        string memory labelkey = "label";
+        string memory datakey = "data";
+        string memory al = "penguin";
+        string memory ad = "5";
+        string memory bl = "penguin2";
+        string memory bd = "10";
+        string memory cl = "penguin3";
+        string memory cd = "11";
+        
+        string memory jstr = jsonStr(labelkey,al);
+        jstr = jsonInt(jstr, datakey, ad);
+        jstr = compJsonStr(jstr);
+        string memory jstr2 = jsonStr(labelkey,bl);
+        jstr2 = jsonInt(jstr2, datakey, bd);
+        jstr2 = compJsonStr(jstr2);
+        string memory jstr3 = jsonStr(labelkey,cl);
+        jstr3 = jsonInt(jstr3, datakey, cd);
+        jstr3 = compJsonStr(jstr3);
+                
+        jstr = arrayAddJson(jstr, jstr2);
+        jstr = arrayAddJson(jstr, jstr3);    
+
+        list = compArrayJson(jstr);
+    }
+
 }
