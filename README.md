@@ -11,15 +11,36 @@ Install and start node.js. (https://nodejs.org/download)
 
 	$ node --version
 
-#### 2. Clone Ethereum Vote Project
+#### 2. Install Git & Tortoisegit Client
 
+Install Git. (https://git-scm.com)
+
+       Windows
+         Install Git
+	 
+Install Tortoisegit Client. (https://tortoisegit.org/)
+
+       Windows
+         Install Tortoisegit
+
+#### 3. Clone Ethereum Vote Project
+
+      Unix
 	$ git clone https://github.com/CODEOFPENGUIN/ether-vote.git
+	
+      Windos
+        폴더 우클릭 Git Clone
+	![tortoisegit](https://user-images.githubusercontent.com/16829499/47509301-ceca2c80-d8b0-11e8-8a58-4d7e9463ca7c.png)
+	
+	Git Clone
+	![tortoisegit2](https://user-images.githubusercontent.com/16829499/47509304-d093f000-d8b0-11e8-83fb-4daf5f80a329.png)
+	
 	$ cd ether-vote
 	$ mkdir -p data
 	$ mkdir -p log
 	$ npm install
 
-#### 3. Install mongoDB
+#### 4. Install mongoDB
 
 Install and start mongoDB. (http://www.mongodb.org) 
 
@@ -27,7 +48,7 @@ Install and start mongoDB. (http://www.mongodb.org)
 	$ cd mongodb
 	$ bin/mongod --dbpath ether-vote/data &
 
-  windows
+  Windows
 	경로 ether-vote 안에 data/log 폴더 선택 (EX: c:\ether-vote\data)
     ![mongo1](https://user-images.githubusercontent.com/16829499/47505707-9ecb5b00-d8a9-11e8-8ea8-d8005bf8ec10.PNG)
         
@@ -36,7 +57,7 @@ Install and start mongoDB. (http://www.mongodb.org)
 	
 	설치 완료 후에는 Service 자동 시작
 
-#### 4. Install Truffle & Ganache
+#### 5. Install Truffle & Ganache
 
 Install Truffle Framework. (https://truffleframework.com)
 
@@ -49,11 +70,11 @@ Install Ganache. (https://truffleframework.com/ganache)
 	  
 	Ganache 실행
 
-#### 5. Install Visual Studio Code
+#### 6. Install Visual Studio Code
 
 Install Visual Studio Code. (https://code.visualstudio.com/)
 
-#### 6. Truffle Compile
+#### 7. Truffle Compile
 
 Compile Smart Contract.
   
@@ -62,12 +83,12 @@ Compile Smart Contract.
 	$ truffle.cmd compile
 	$ truffle.cmd migrate --reset
 
-#### 7. Start Ethereum Vote Project
+#### 8. Start Ethereum Vote Project
 
 	$ cd ether-vote
 	$ npm run start
 
-#### 8. Start development
+#### 9. Start development
 
 	http://localhost:3000
 
