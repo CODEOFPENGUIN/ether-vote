@@ -82,23 +82,6 @@ contract VoteContract is Ownable, StringUtil {
         return voteHst[vSeq].candidates[cSeq].voters[inx];
     }
     
-    // function getCandidateList(uint256 vSeq) public view returns (string) {
-    //     string memory rev = "[";
-    //     for(uint i = 0; i < voteHst[vSeq].candidateSeq; i++){
-    //        rev = rev.toSlice().concat("{\"name\":\"".toSlice());
-    //        rev = rev.toSlice().concat(voteHst[vSeq].candidates[i].name.toSlice());
-    //        rev = rev.toSlice().concat("\",\"imgPath\":\"".toSlice());
-    //        rev = rev.toSlice().concat(voteHst[vSeq].candidates[i].imgPath.toSlice());
-    //        rev = rev.toSlice().concat("\"}".toSlice());
-    //        if(i != voteHst[vSeq].candidateSeq -1){
-    //         rev = rev.toSlice().concat(",".toSlice());
-    //        }
-    //     }
-    //     rev = rev.toSlice().concat("]".toSlice());
-        
-    //     return rev;
-    // }
-    
     function getCandidateList(uint256 vSeq, uint256 cSeq) public view returns (string _name, string _imgPath) {
         _name = voteHst[vSeq].candidates[cSeq].name;
         _imgPath = voteHst[vSeq].candidates[cSeq].imgPath;
@@ -123,30 +106,22 @@ contract VoteContract is Ownable, StringUtil {
     }
 
     
-    function getVotesCount() public pure returns (string list){
+    function getVotesCount() public view returns (string list){
         string memory labelkey = "label";
         string memory datakey = "data";
-        string memory al = "penguin";
-        string memory ad = "5";
-        string memory bl = "penguin2";
-        string memory bd = "10";
-        string memory cl = "penguin3";
-        string memory cd = "11";
-        
-        string memory jstr = jsonStr(labelkey,al);
-        jstr = jsonInt(jstr, datakey, ad);
-        jstr = compJsonStr(jstr);
-        string memory jstr2 = jsonStr(labelkey,bl);
-        jstr2 = jsonInt(jstr2, datakey, bd);
-        jstr2 = compJsonStr(jstr2);
-        string memory jstr3 = jsonStr(labelkey,cl);
-        jstr3 = jsonInt(jstr3, datakey, cd);
-        jstr3 = compJsonStr(jstr3);
-                
-        jstr = arrayAddJson(jstr, jstr2);
-        jstr = arrayAddJson(jstr, jstr3);    
-
-        list = compArrayJson(jstr);
+        for(uint i = 0; i < voteSeq; i++){
+            string memory jstr = "";
+            jstr = jsonStr(labelkey, voteHst[i].voteName);
+            jstr = jsonInt(jstr, datakey, uintToString(uint(voteHst[i].voteCnt)));
+            jstr = compJsonStr(jstr);
+            if(i == 0){
+                list = jstr;
+            }
+            else{
+                list = arrayAddJson(list, jstr);
+            }
+        }
+        list = compArrayJson(list);
     }
 
 }

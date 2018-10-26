@@ -61,17 +61,6 @@ function drawChart() {
     var chart = new google.visualization.PieChart(document.getElementById('flot-pie-chart'));
 
     chart.draw(data, options);
-    chart = new google.visualization.PieChart(document.getElementById('flot-pie-chart2'));
-
-    chart.draw(data, options);
-
-
-    chart = new google.visualization.PieChart(document.getElementById('flot-pie-chart3'));
-
-    chart.draw(data, options);
-    chart = new google.visualization.PieChart(document.getElementById('flot-pie-chart4'));
-
-    chart.draw(data, options);
 }
 
 //Flot Pie Chart
