@@ -112,7 +112,15 @@ contract VoteContract is Ownable, StringUtil {
         for(uint i = 0; i < voteSeq; i++){
             string memory jstr = "";
             jstr = jsonStr(labelkey, voteHst[i].voteName);
-            jstr = jsonInt(jstr, datakey, uintToString(uint(voteHst[i].voteCnt)));
+            int dataInt = voteHst[i].voteCnt;
+            string memory data = "";
+            if(dataInt == 0){
+                data = "0";
+            }
+            else{
+                data = uintToString(uint(voteHst[i].voteCnt));
+            }
+            jstr = jsonInt(jstr, datakey, data);
             jstr = compJsonStr(jstr);
             if(i == 0){
                 list = jstr;
@@ -124,4 +132,18 @@ contract VoteContract is Ownable, StringUtil {
         list = compArrayJson(list);
     }
 
+    function initVoteData() public onlyOwner{
+        addVote("test");
+        addVote("test2");
+        addCandidate(0, "test-penguin", "/img/penguin.jpg");
+        addCandidate(0, "test-penguin2", "/img/penguin2.jpg");
+        addCandidate(0, "test-penguin3", "/img/penguin3.jpg");
+        addCandidate(0, "test-penguin4", "/img/penguin4.jpg");
+
+        addCandidate(1, "test2-penguin", "/img/penguin.jpg");
+        addCandidate(1, "test2-penguin2", "/img/penguin2.jpg");
+        addCandidate(1, "test2-penguin3", "/img/penguin3.jpg");
+        addCandidate(1, "test2-penguin4", "/img/penguin4.jpg");
+
+    }
 }

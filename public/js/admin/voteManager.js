@@ -4,6 +4,8 @@ $(document).ready(function(){
     $('#btn-addVote').on('click', addVote);
     $('#btn-addCandidate').on('click', addCandidate);
     $('#btn-getCandidate').on('click', searchBtncandidate);
+    $('#btn-init').on('click', initData);
+    
     
     var address = $('#token').val();
     if(address){
@@ -73,6 +75,17 @@ function addCandidate(){
         return false;
     }
     Web3AddCandidate(vSeq, cName, img, addCandidateCallback);
+}
+
+function initData(){
+    console.log("A");
+    Web3InitData(initDataCallback);
+}
+function initDataCallback(code, msg){
+    alert(msg);
+    if(code == "S"){
+        searchVoteList();
+    }
 }
 
 function addCandidateCallback(code, msg){

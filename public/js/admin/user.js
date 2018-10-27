@@ -40,7 +40,7 @@ function getAccount(error, accounts) {
     tb.html("");
     var i = 0;   
     $.each(accounts, function(key, value){
-        var html ="<tr onclick='selectAddr(\"" + value + "\")'><td>" + ++i + "</td><td>"+value+"</td></tr>";
+        var html ="<tr onclick='selectAddr(\"" + value + "\")'><td>" + ++i + "</td><td name='addrTd'>"+value+"</td></tr>";
         tb.append(html);
     });
 }
@@ -83,6 +83,45 @@ function initUser(){
                 getList();
         })
 }
+
+function initUserInfo(){
+    removeAll();
+    
+    
+    
+}
+
+function removeAll(){
+    $.post("/admin/user/deleteAll"
+        ,{}
+        ,function(result){
+            if(result){
+                var trs = $('#addressList').find("tr>td[name='addrTd']");
+                var inx = 0;
+                $.each(trs, function(indexInArray, value){
+                    var addr = $(this).text();
+                    var uName = indexInArray + 1;
+                    var pwd = indexInArray + 1;
+                    var addr = addr;
+                    $.ajax({
+                        type: 'POST',
+                        url: "/signup",
+                        data: {username:uName,password:pwd,address:addr},
+                        success: function(){},
+                        dataType: "json",
+                        async:false
+                      });                    
+                });
+
+                getList();
+            }
+        })
+}
+
+function insertAll(){
+    //$.post("/admin/user/insertAll");
+}
+
 $(document).ready(function(){
     getList();
     
@@ -94,5 +133,5 @@ $(document).ready(function(){
     $('#btn-update').on('click', updateUser);
     $('#btn-delete').on('click', deleteUser);
 
-    $('#btn-init').on('click', initUser);
+    $('#btn-init').on('click', initUserInfo);
 });

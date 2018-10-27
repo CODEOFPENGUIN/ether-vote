@@ -10,10 +10,10 @@ module.exports = function(app){
         });
     });
 
-	app.post('/admin/user/delete',isAuthenticated, function(req, res) {
+	app.post('/admin/user/deleteAll',isAuthenticated, function(req, res) {
 		// set the user's local credentials
 		var id = req.param('id');
-		Bbs.findByIdAndRemove(id,function(err){
+		User.remove({}, function(err, user){
 			if (err){
 			  console.log('Error in Saving bbs: '+err);  
 			  res.send({"result":false});

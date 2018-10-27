@@ -118,6 +118,22 @@ function Web3GetVotesCount(callback){
   });
 
 }
+
+
+function Web3InitData(callback){
+  var voteInstance;
+  web3App.contracts.voteContract.deployed().then(function(instance) {
+    voteInstance = instance;
+    return voteInstance.initVoteData({from:web3App.currAccount, gas:3000000});
+  }).then(function(){
+    callback("S", "Init");
+  }).catch(function(err) {
+    console.log(err.message);
+    callback("E", err.message);
+  });
+
+}
+
 function setVoteSeq(){
   $('#vote-seq').text($('#voteList').val());
 }
