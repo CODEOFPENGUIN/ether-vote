@@ -146,4 +146,35 @@ contract VoteContract is Ownable, StringUtil {
         addCandidate(1, "test2-penguin4", "/img/penguin4.jpg");
 
     }
+
+    function getCandidateVoteCount(uint256 vSeq) public view returns (string list){
+        string memory labelkey = "label";
+        string memory datakey = "data";
+
+        uint cSeq = voteHst[vSeq].candidateSeq;
+        for(uint i = 0; i < cSeq; i++){
+            string memory jstr = "";
+            jstr = jsonStr(labelkey, voteHst[vSeq].candidates[i].name);
+            uint dataInt = voteHst[vSeq].candidates[i].voters.length;
+            string memory data = "";
+            if(dataInt == 0){
+                data = "0";
+            }
+            else{
+                data = uintToString(dataInt);
+            }
+            jstr = jsonInt(jstr, datakey, data);
+            jstr = compJsonStr(jstr);
+            if(i == 0){
+                list = jstr;
+            }
+            else{
+                list = arrayAddJson(list, jstr);
+            }
+        }
+        list = compArrayJson(list);
+
+
+
+    }
 }

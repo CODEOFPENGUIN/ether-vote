@@ -1,20 +1,6 @@
 
 $(document).ready(function(){
     web3App.initCallback(init);
-    // var data = [{
-    //     label: "Series 0",
-    //     data: 1
-    // }, {
-    //     label: "Series 1",
-    //     data: 3
-    // }, {
-    //     label: "Series 2",
-    //     data: 9
-    // }, {
-    //     label: "Series 3",
-    //     data: 20
-    // }];
-    // iniPieChart($("#flot-pie-chart"), data);
     $('#btn-votesearch').on('click', search);
     var address = $('#token').val();
     if(address){
@@ -31,59 +17,87 @@ function search(){
 }
 var jsonObj;
 function searchCallback(value){
-    console.log(value);
     jsonObj = $.parseJSON(value);
-    console.log(jsonObj);
     
-
-    //iniPieChart($("#flot-pie-chart"), jsonObj);
     google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawVoteChart);
 
 }
-function drawChart() {
+function drawVoteChart() {
+
+    var row = $('#chart-vote');
+    var templete = $('#templete-pie');
+    templete.find('span[name="title"]').text("Vote");
+    var obj = $(templete.html());
+    row.append(obj);
+    var cObj = obj.find('div[name="flot-pie-chart"]');
 
     var data = new google.visualization.DataTable();
 
     // Declare columns
     data.addColumn('string', 'Name');
     data.addColumn('number', 'Count');
-    
+    data.addColumn('number', 'seq');
+    var i = 0;
     $.each(jsonObj, function() {
-        console.log(this.label + ":" + this.data);
-        data.addRow([this.label, Number(this.data)]);
+        data.addRow([this.label, Number(this.data), i++]);
     });
-    console.log(data);
     var options = {
       title: 'Vote Count'
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('flot-pie-chart'));
+    var chart = new google.visualization.PieChart(cObj.get(0));
+
+    function selectVoteHandler(){
+        var selectedItem = chart.getSelection()[0];
+        if(selectedItem){        
+          var value = data.getValue(selectedItem.row, 2);
+          searchCandidateVoteCount(value);
+        }
+    }
+
+    google.visualization.events.addListener(chart, 'select', selectVoteHandler);
 
     chart.draw(data, options);
 }
 
-//Flot Pie Chart
-function iniPieChart(target, data) {
+function searchCandidateVoteCount(vSeq){
+    Web3GetCandidateVoteCount(vSeq, searchCandidateVoteCallback);
+}
 
-    var plotObj = $.plot(target, data, {
-        series: {
-            pie: {
-                show: true
-            }
-        },
-        grid: {
-            hoverable: true
-        },
-        tooltip: true,
-        tooltipOpts: {
-            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
-            shifts: {
-                x: 20,
-                y: 0
-            },
-            defaultTheme: false
-        }
+
+function searchCandidateVoteCallback(value){
+    jsonObj = $.parseJSON(value);
+    
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawCandidateVoteChart);
+
+}
+function drawCandidateVoteChart() {
+
+    var row = $('#chart-detail');
+    var templete = $('#templete-pie');
+    templete.find('span[name="title"]').text("투표현황");
+    var obj = $(templete.html());
+    row.append(obj);
+    var cObj = obj.find('div[name="flot-pie-chart"]');
+
+
+    var data = new google.visualization.DataTable();
+
+    // Declare columns
+    data.addColumn('string', 'Name');
+    data.addColumn('number', 'Count');
+    data.addColumn('number', 'seq');
+    var i = 0;
+    $.each(jsonObj, function() {
+        data.addRow([this.label, Number(this.data), i++]);
     });
+    var options = {
+      title: '투표현황'
+    };
 
-};
+    var chart = new google.visualization.PieChart(cObj.get(0));
+
+    chart.draw(data, options);
+}

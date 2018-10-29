@@ -119,6 +119,18 @@ function Web3GetVotesCount(callback){
 
 }
 
+function Web3GetCandidateVoteCount(vSeq, callback){
+  var voteInstance;
+  web3App.contracts.voteContract.deployed().then(function(instance) {
+    voteInstance = instance;
+    return voteInstance.getCandidateVoteCount(vSeq);
+  }).then(function(value){
+    callback(value);
+  }).catch(function(err) {
+    console.log(err.message);
+  });
+
+}
 
 function Web3InitData(callback){
   var voteInstance;
