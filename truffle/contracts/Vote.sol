@@ -68,13 +68,14 @@ contract VoteContract is Ownable, StringUtil {
         return voteSeq;
     }
 
-    function getWinner(uint256 vSeq) public view returns (string winnerName, int voteCnt) {
-        voteCnt = -1;
+    function getWinner(uint256 vSeq) public view returns (string winnerName, uint cSeq) {
+        int voteCnt = -1;
         for(uint i = 0; i < voteHst[vSeq].candidateSeq; i++){
             int vCnt = int(voteHst[vSeq].candidates[i].voters.length);
             if(voteCnt < vCnt) {
                 voteCnt = vCnt;
                 winnerName = voteHst[vSeq].candidates[i].name;
+                cSeq = i;
             }
         }
     }
@@ -150,8 +151,13 @@ contract VoteContract is Ownable, StringUtil {
     function getCandidateVoteCount(uint256 vSeq) public view returns (string list){
         string memory labelkey = "label";
         string memory datakey = "data";
+        string memory winnerKey = "winner";
 
         uint cSeq = voteHst[vSeq].candidateSeq;
+        string memory winnername = "";
+        uint _cSeq = 0;
+        (winnername, _cSeq) = getWinner(vSeq);
+
         for(uint i = 0; i < cSeq; i++){
             string memory jstr = "";
             jstr = jsonStr(labelkey, voteHst[vSeq].candidates[i].name);
@@ -164,7 +170,16 @@ contract VoteContract is Ownable, StringUtil {
                 data = uintToString(dataInt);
             }
             jstr = jsonInt(jstr, datakey, data);
+
+            if(_cSeq == i){
+                jstr = jsonStr(jstr, winnerKey, "Y");
+            }
+            else{
+                jstr = jsonStr(jstr, winnerKey, "N");
+            }
+
             jstr = compJsonStr(jstr);
+
             if(i == 0){
                 list = jstr;
             }

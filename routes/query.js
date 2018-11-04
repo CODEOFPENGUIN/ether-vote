@@ -55,6 +55,14 @@ module.exports = function(app){
 				
 			})
 	});
+
+    app.get("/admin/user/getUserCount",isAuthenticated, function(req,res){
+        User.countDocuments({},function(err, usr){
+            if(err)
+                return done(err);
+            return res.send(usr+"");
+        });
+    });
 }
 
 	// As with any middleware it is quintessential to call next()

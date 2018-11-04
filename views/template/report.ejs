@@ -17,23 +17,54 @@
 
     </div>
     <!-- /.row -->
-    <div class="row" id="templete-pie" style="display: none">
+    <div class="row" id="templete-vote" style="display: none">
         <div class="col-lg-5">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <span name="title">test title</span>
-                    <button type="button" id="btn-votesearch" class="btn btn-default btn-xs  btn-success"><i class="fa fa-refresh fa-fw"></i></button>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div name="flot-pie-chart"></div>
+                </div>
+                <!-- /.panel-body -->                
+
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+    <div class="row" id="templete-detail" style="display: none">
+        <div class="col-lg-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span name="title">test title</span>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div name="flot-pie-chart"></div>
                 </div>
                 <!-- /.panel-body -->
+                
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>후보명</th>
+                                <th>투표수</th>
+                                <th>당선여부</th>
+                            </tr>
+                        </thead>
+                        <tbody name="addressList">
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+
             </div>
             <!-- /.panel -->
         </div>
     </div>
-    <!-- /.row -->
 </div>
 <!-- /#page-wrapper -->
 <script src="/bower_components/Flot/excanvas.min.js"></script>

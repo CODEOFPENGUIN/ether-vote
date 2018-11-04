@@ -32,8 +32,9 @@ contract StringUtil {
         return strConcat("\"", key, "\":\"", value, "\"");
     }
     
-    function jsonStr(string jStr, string key, string value) internal pure returns (string){
-        return strConcat(jStr, ",\"", key, "\":\"", value);
+    function jsonStr(string jStr, string key, string value) internal pure returns (string res){
+        res = strConcat(jStr, ",\"", key, "\":\"", value);
+        res = strConcat(res, "\"");
     }
     function jsonInt(string key, string value) internal pure returns (string){
         return strConcat("\"", key, "\":", value);
